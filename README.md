@@ -5,19 +5,6 @@ This repository offers a Python package for the PyTorch implementation of the AP
 
 **Author**: [Ravin Kumar](https://mr-ravin.github.io)
 
-**Publication**: 
-
-**Published Paper**: [click here]()
-
-**Doi**: [DOI Link of Paper]()
-
-**Other Sources**:
-- [Arxiv.org]()
-- [Research Gate]()
-- [Osf.io]()
-- [SSRN]()
-- [Internet Archive](), [Internet Archive - Preprint]()
-- [Medium.com]()
 
 #### Github Repositories: 
 - **Github Repository** (Pytorch Implementation): [Python Package](https://github.com/mr-ravin/APTxNeuron)
