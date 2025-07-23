@@ -22,7 +22,7 @@ CSV_STORE_PATH = "./result/output.csv"
 class APTxNeuron(nn.Module):
     def __init__(self, input_dim):
         super(APTxNeuron, self).__init__()
-        self.alpha = nn.Parameter(torch.randn(input_dim))
+        self.alpha = nn.Parameter(torch.randn(input_dim)) # To reduce trainable parameters from 3n + 1 to 2n + 1 (where n is the input dimension), replace with: self.alpha = torch.ones(input_dim)  # (fix α_i = 1 to make it non-trainable)
         self.beta  = nn.Parameter(torch.randn(input_dim))
         self.gamma = nn.Parameter(torch.randn(input_dim))
         self.delta = nn.Parameter(torch.zeros(1))
