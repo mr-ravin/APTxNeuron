@@ -11,7 +11,7 @@ This repository offers a Python package for the PyTorch implementation of the AP
   
 #### Github Repositories: 
 - **Github Repository** (PyPi Package - Pytorch): [Python Package](https://github.com/mr-ravin/aptx_neuron)
-- **Github Repository** (Experimental results with MNIST): [Python Code](https://github.com/mr-ravin/APTxNeuron)
+- **Github Repository** (Experimentation results with MNIST): [Python Code](https://github.com/mr-ravin/APTxNeuron)
 
 ---
 ### APTx Neuron
