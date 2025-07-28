@@ -7,9 +7,11 @@ This repository offers a Python package for the PyTorch implementation of the AP
 
 **Sources**:
 - [Arxiv.org](https://arxiv.org/abs/2507.14270)
+- [Research Gate](https://www.researchgate.net/publication/393889376_APTx_Neuron_A_Unified_Trainable_Neuron_Architecture_Integrating_Activation_and_Computation)
   
 #### Github Repositories: 
-- **Github Repository** (Pytorch Implementation): [Python Package](https://github.com/mr-ravin/APTxNeuron)
+- **Github Repository** (PyPi Package - Pytorch): [Python Package](https://github.com/mr-ravin/aptx_neuron)
+- **Github Repository** (Experimental results with MNIST): [Python Code](https://github.com/mr-ravin/APTxNeuron)
 
 ---
 ### APTx Neuron
@@ -41,6 +43,16 @@ where:
 
 This equation allows the neuron to modulate each input through a learned, per-dimension non-linearity and scaling operation. The term $(\alpha_i + \tanh(\beta_i x_i))$ introduces adaptive gating, and $\gamma_i x_i$ provides multiplicative control.
 
+---
+## 📥 Installation
+```bash
+pip install aptx_neuron
+```
+or,
+
+```bash
+pip install git+https://github.com/mr-ravin/aptx_neuron.git
+```
 ----
 #### Experimentation on MNIST
 Run the below code to automatically run the APTx Neuron based fully-connected neural network on MNIST and save the `loss` and `accuracy` values in `./result/` directory.
