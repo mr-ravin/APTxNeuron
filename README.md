@@ -1,5 +1,5 @@
 ## APTx Neuron 
-This repository offers a Python code for the PyTorch implementation of the APTx Neuron and experimentation on MNIST Dataset, as introduced in the paper "APTx Neuron: A Unified Trainable Neuron Architecture Integrating Activation and Computation".
+This repository offers a Python code for the PyTorch implementation of the APTx Neuron and experimentation on MNIST dataset, as introduced in the paper "APTx Neuron: A Unified Trainable Neuron Architecture Integrating Activation and Computation".
 
 **Paper Title**: APTx Neuron: A Unified Trainable Neuron Architecture Integrating Activation and Computation
 
@@ -10,8 +10,9 @@ This repository offers a Python code for the PyTorch implementation of the APTx 
 - [Research Gate](https://www.researchgate.net/publication/393889376_APTx_Neuron_A_Unified_Trainable_Neuron_Architecture_Integrating_Activation_and_Computation)
   
 #### Github Repositories: 
-- **Github Repository** (PyPi Package - Pytorch): [Python - PyPI Package](https://github.com/mr-ravin/aptx_neuron)
-- **Github Repository** (Experimentation results with MNIST): [MNIST - Experimentation Code](https://github.com/mr-ravin/APTxNeuron)
+- **APTx Neuron** (Pytorch + PyPI Package): [APTx Neuron](https://github.com/mr-ravin/aptx_neuron)
+- **APTx Activation Function** (Pytorch + PyPI Package): [APTx Activation Function](https://github.com/mr-ravin/aptx_activation)
+- **Experimentation Results with MNIST** (APTx Neuron): [MNIST Experimentation Code](https://github.com/mr-ravin/APTxNeuron)
 
 #### Cite Paper as:
 ```
@@ -92,8 +93,9 @@ aptx_neuron_layer = aptx_neuron.aptx_layer(input_dim, is_alpha_trainable=False)
 
 ----
 ## Experimentation on MNIST dataset
-Run the below code to automatically run the APTx Neuron based fully-connected neural network on MNIST and save the `loss` and `accuracy` values in `./result/` directory.
+Run the below code to automatically run the APTx Neuron based fully-connected neural network on MNIST dataset and save the `loss` and `accuracy` values in `./result/` directory.
 
+**Note**: The Experimentation was performed using `Python 3.12.11`.
 ```python
 python3 run.py --total_epoch 20
 ```
