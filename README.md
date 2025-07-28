@@ -1,5 +1,5 @@
 ## APTx Neuron 
-This repository offers a Python package for the PyTorch implementation of the APTx Neuron, as introduced in the paper "APTx Neuron: A Unified Trainable Neuron Architecture Integrating Activation and Computation".
+This repository offers a Python code for the PyTorch implementation of the APTx Neuron and experimentation on MNIST Dataset, as introduced in the paper "APTx Neuron: A Unified Trainable Neuron Architecture Integrating Activation and Computation".
 
 **Paper Title**: APTx Neuron: A Unified Trainable Neuron Architecture Integrating Activation and Computation
 
@@ -13,6 +13,20 @@ This repository offers a Python package for the PyTorch implementation of the AP
 - **Github Repository** (PyPi Package - Pytorch): [Python Package](https://github.com/mr-ravin/aptx_neuron)
 - **Github Repository** (Experimentation results with MNIST): [Python Code](https://github.com/mr-ravin/APTxNeuron)
 
+#### Cite Paper as:
+```
+Kumar, Ravin. "APTx Neuron: A Unified Trainable Neuron Architecture Integrating Activation and Computation." arXiv preprint arXiv:2507.14270 (2025).
+```
+Or,
+```
+@article{kumar2025aptx,
+  title={APTx Neuron: A Unified Trainable Neuron Architecture Integrating Activation and Computation},
+  author={Kumar, Ravin},
+  journal={arXiv preprint arXiv:2507.14270},
+  year={2025}
+}
+```
+ 
 ---
 ### APTx Neuron
 <b>Abstract</b>: We propose the APTx Neuron, a novel, unified neural computation unit that integrates non-linear activation and linear transformation into a single trainable expression. The APTx Neuron is derived from the [APTx activation function](https://arxiv.org/abs/2209.06119), thereby eliminating the need for separate activation layers and making the architecture both computationally efficient and elegant. The proposed neuron follows the functional form $y = \sum_{i=1}^{n} ((\alpha_i + \tanh(\beta_i x_i)) \cdot \gamma_i x_i) + \delta$, where all parameters $\alpha_i$, $\beta_i$, $\gamma_i$, and $\delta$ are trainable. We validate our APTx Neuron-based architecture on the MNIST dataset, achieving up to 96.69\% test accuracy within 11 epochs using approximately 332K trainable parameters. The results highlight the superior expressiveness and computational efficiency of the APTx Neuron compared to traditional neurons, pointing toward a new paradigm in unified neuron design and the architectures built upon it.
@@ -71,7 +85,7 @@ aptx_neuron_layer = aptx_neuron.aptx_layer(input_dim, is_alpha_trainable=False)
 ```
 
 ----
-#### Experimentation on MNIST
+## Experimentation on MNIST dataset
 Run the below code to automatically run the APTx Neuron based fully-connected neural network on MNIST and save the `loss` and `accuracy` values in `./result/` directory.
 
 ```python
@@ -87,7 +101,7 @@ python3 run.py --total_epoch 20
 
 ----
 #### Conclusion
-This work introduced the APTx Neuron, a unified, fully trainable neural unit that integrates linear transformation and non-linear activation into a single expression, extending the APTx activation function. By learning per-input parameters $\alpha_i$, $\beta_i$, $\gamma_i$, and $\delta$ for each input $x_i$ within a neuron, the APTx Neuron removes the need for separate activation layers and enables fine-grained input transformation. APTx Neuron generalizes traditional neurons and activations, offering greater representational power. Our MNIST experiments show that a fully connected APTx Neuron-based feedforward neural network achieves 96.69% test accuracy within 11 epochs with approximately 332K trainable parameters, demonstrating rapid convergence and high efficiency. This design lays the groundwork for extending APTx Neurons to CNNs and transformers, paving the way for more compact and adaptive deep learning architectures.
+This work introduced the APTx Neuron, a unified, fully trainable neural unit that integrates linear transformation and non-linear activation into a single expression, extending the APTx activation function. By learning per-input parameters $\alpha_i$, $\beta_i$, and $\gamma_i$ for each input $x_i$, and a shared bias term $\delta$ within a neuron, the APTx Neuron removes the need for separate activation layers and enables fine-grained input transformation. The APTx Neuron generalizes traditional neurons and activations, offering greater representational power. Our experiments show that a fully connected APTx Neuron-based feedforward neural network achieves 96.69% test accuracy on the MNIST dataset within 11 epochs using approximately 332K trainable parameters, demonstrating rapid convergence and high efficiency. This design lays the groundwork for extending APTx Neurons to CNNs and transformers, paving the way for more compact and adaptive deep learning architectures.
 
 ----
 
