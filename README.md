@@ -10,8 +10,8 @@ This repository offers a Python code for the PyTorch implementation of the APTx 
 - [Research Gate](https://www.researchgate.net/publication/393889376_APTx_Neuron_A_Unified_Trainable_Neuron_Architecture_Integrating_Activation_and_Computation)
   
 #### Github Repositories: 
-- **Github Repository** (PyPi Package - Pytorch): [Python Package](https://github.com/mr-ravin/aptx_neuron)
-- **Github Repository** (Experimentation results with MNIST): [Python Code](https://github.com/mr-ravin/APTxNeuron)
+- **Github Repository** (PyPi Package - Pytorch): [Python - PyPI Package](https://github.com/mr-ravin/aptx_neuron)
+- **Github Repository** (Experimentation results with MNIST): [MNIST - Experimentation Code](https://github.com/mr-ravin/APTxNeuron)
 
 #### Cite Paper as:
 ```
@@ -70,14 +70,20 @@ pip install git+https://github.com/mr-ravin/aptx_neuron.git
 ----
 
 ## Usage
-1. APTx Neuron-based Layer with all $\alpha_i$, $\beta_i$, $\gamma_i$, and $\delta$ as trainable:
+<b>1</b>. APTx Neuron-based Layer with all $\alpha_i$, $\beta_i$, $\gamma_i$, and $\delta$ as trainable:
+
+The setting is_alpha_trainable=True makes $\alpha_i$ learnable. Each APTx neuron will have $(3n + 1)$ trainable parameters, where $n$ is input_dim.
+
 ```
 import aptx_neuron
 input_dim = 8 # assuming input vector to be of dimension 8.
 aptx_neuron_layer = aptx_neuron.aptx_layer(input_dim) # default: is_alpha_trainable=True
 ```
 
-2. APTx Neuron-based Layer with $\alpha_i=1$ (not trainable); While $\beta_i$, $\gamma_i$, and $\delta$ as trainable:
+<b>2</b>. APTx Neuron-based Layer with $\alpha_i=1$ (not trainable); While $\beta_i$, $\gamma_i$, and $\delta$ as trainable:
+
+The setting is_alpha_trainable=False makes $\alpha_i$ fixed (non-trainable). Each APTx neuron will then have $(2n + 1)$ trainable parameters, thus reducing memory and training time per epoch.
+
 ```
 import aptx_neuron
 input_dim = 8 # assuming input vector to be of dimension 8.
