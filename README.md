@@ -15,7 +15,7 @@ This repository offers a Python package for the PyTorch implementation of the AP
 
 ---
 ### APTx Neuron
-<b>Abstract</b>: We propose the APTx Neuron, a novel, unified neural computation unit that integrates non-linear activation and linear transformation into a single trainable expression. The APTx Neuron is derived from the [APTx activation function](https://arxiv.org/abs/2209.06119), thereby eliminating the need for separate activation layers and making the architecture both computationally efficient and elegant. The proposed neuron follows the functional form $y = \sum_{i=1}^{n} ((\alpha_i + \tanh(\beta_i x_i)) \cdot \gamma_i x_i) + \delta$, where all parameters $\alpha_i$, $\beta_i$, $\gamma_i$, and $\delta$ are trainable. We validate our APTx Neuron-based architecture on the MNIST dataset, achieving up to 96.69\% test accuracy in just 20 epochs using approximately 332K trainable parameters. The results highlight the superior expressiveness and computational efficiency of the APTx Neuron compared to traditional neurons, pointing toward a new paradigm in unified neuron design and the architectures built upon it.
+<b>Abstract</b>: We propose the APTx Neuron, a novel, unified neural computation unit that integrates non-linear activation and linear transformation into a single trainable expression. The APTx Neuron is derived from the [APTx activation function](https://arxiv.org/abs/2209.06119), thereby eliminating the need for separate activation layers and making the architecture both computationally efficient and elegant. The proposed neuron follows the functional form $y = \sum_{i=1}^{n} ((\alpha_i + \tanh(\beta_i x_i)) \cdot \gamma_i x_i) + \delta$, where all parameters $\alpha_i$, $\beta_i$, $\gamma_i$, and $\delta$ are trainable. We validate our APTx Neuron-based architecture on the MNIST dataset, achieving up to 96.69\% test accuracy within 11 epochs using approximately 332K trainable parameters. The results highlight the superior expressiveness and computational efficiency of the APTx Neuron compared to traditional neurons, pointing toward a new paradigm in unified neuron design and the architectures built upon it.
 
 The APTx Neuron is a novel computational unit that unifies linear transformation and non-linear activation into a single, expressive formulation. Inspired by the parametric APTx activation function, this neuron architecture removes the strict separation between computation and activation, allowing both to be learned as a cohesive entity. It is designed to enhance representational flexibility while reducing architectural redundancy.
 
@@ -53,6 +53,23 @@ or,
 ```bash
 pip install git+https://github.com/mr-ravin/aptx_neuron.git
 ```
+----
+
+## Usage
+1. APTx Neuron-based Layer with all $\alpha_i$, $\beta_i$, $\gamma_i$, and $\delta$ as trainable:
+```
+import aptx_neuron
+input_dim = 8 # assuming input vector to be of dimension 8.
+aptx_neuron_layer = aptx_neuron.aptx_layer(input_dim) # default: is_alpha_trainable=True
+```
+
+2. APTx Neuron-based Layer with $\alpha_i=1$ (not trainable); While $\beta_i$, $\gamma_i$, and $\delta$ as trainable:
+```
+import aptx_neuron
+input_dim = 8 # assuming input vector to be of dimension 8.
+aptx_neuron_layer = aptx_neuron.aptx_layer(input_dim, is_alpha_trainable=False)
+```
+
 ----
 #### Experimentation on MNIST
 Run the below code to automatically run the APTx Neuron based fully-connected neural network on MNIST and save the `loss` and `accuracy` values in `./result/` directory.
