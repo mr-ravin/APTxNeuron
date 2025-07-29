@@ -11,7 +11,7 @@ import os
 
 parser = argparse.ArgumentParser(prog='MNIST digit classification using a fully-connected feedforward neural network based on APTx Neuron architecture.')
 parser.add_argument("--mode", "-m", default="train")
-parser.add_argument("--total_epoch", "-tep", default=20)
+parser.add_argument("--total_epoch", "-tep", default=1)
 parser.add_argument("--load_model_weights_path", "-pth", default="./weights/aptx_neural_network_11.pt") # 96.69 % accuracy on test set.
 parser.add_argument("--device", "-d", default="cpu") # we used cpu for experimentation on MNIST dataset
 
@@ -133,7 +133,7 @@ def count_parameters(model):
 # -----------------------------------
 # Model Training Script
 # -----------------------------------
-def train(device):
+def train_and_evaluate(device):
     # MNIST Data Loaders
     train_transform = transforms.Compose([
         transforms.ToTensor(),
@@ -178,7 +178,7 @@ def train(device):
 # -----------------------------------
 # Model Inference Script
 # -----------------------------------
-def infer(model_weight_path, device):
+def inference(model_weight_path, device):
     # MNIST Data Loaders
     test_transform = transforms.Compose([
         transforms.ToTensor(),
@@ -209,6 +209,6 @@ if __name__ == "__main__":
     print("Removing previously stored weights: ./weights/*pt")
     if MODE.lower() == "train":
         os.system("rm ./weights/*pt")
-        train(DEVICE)
-    elif MODE.lower() in ["inference", "infer", "test"]:
-        infer(INFERENCE_MODEL_WEIGHTS, DEVICE)
+        train_and_evaluate(DEVICE)
+    elif MODE.lower() in ["inference", "infer", "test", "eval", "evaluate"]:
+        inference(INFERENCE_MODEL_WEIGHTS, DEVICE)
