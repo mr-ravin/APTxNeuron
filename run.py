@@ -21,7 +21,7 @@ TOTAL_EPOCH = int(args.total_epoch)
 DEVICE = args.device
 INFERENCE_MODEL_WEIGHTS = args.load_model_weights_path
 LR= 4e-3
-CSV_STORE_PATH = "./result/output.csv"
+CSV_STORE_PATH = "./result/"
 
 # -----------------------------------
 # APTx Neuron (Single Unit)
@@ -131,7 +131,7 @@ def count_parameters(model):
     return total
 
 # -----------------------------------
-# Main Training Script
+# Model Training Script
 # -----------------------------------
 def train(device):
     # MNIST Data Loaders
@@ -170,9 +170,14 @@ def train(device):
         write_dict['test_accuracy'].append(test_accuracy)
     df = pd.DataFrame(write_dict)
     # Write the DataFrame to a CSV file
-    print("Loss and Accuracy values are saved in: ", CSV_STORE_PATH)
-    df.to_csv(CSV_STORE_PATH, index=False)
-        
+    csv_output_path = CSV_STORE_PATH+"train_mode_output.csv"
+    print("Loss and Accuracy values are saved in: ", csv_output_path)
+    df.to_csv(csv_output_path, index=False)
+
+
+# -----------------------------------
+# Model Inference Script
+# -----------------------------------
 def infer(model_weight_path, device):
     # MNIST Data Loaders
     test_transform = transforms.Compose([
@@ -195,9 +200,10 @@ def infer(model_weight_path, device):
     write_dict['test_accuracy'].append(test_accuracy)
     df = pd.DataFrame(write_dict)
     # Write the DataFrame to a CSV file
-    print("Inference: Loss and Accuracy values are saved in: ", CSV_STORE_PATH)
-    df.to_csv(CSV_STORE_PATH, index=False)
-    print("test accuracy: ", test_accuracy)
+    csv_output_path = CSV_STORE_PATH+"inference_mode_output.csv"
+    print("Loss and Accuracy values are saved in: ", csv_output_path)
+    df.to_csv(csv_output_path, index=False)
+    print("Test accuracy: ", test_accuracy)
 
 if __name__ == "__main__":
     print("Removing previously stored weights: ./weights/*pt")
