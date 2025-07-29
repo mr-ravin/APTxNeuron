@@ -19,7 +19,7 @@ CSV_STORE_PATH = "./result/output.csv"
 # -----------------------------------
 # APTx Neuron (Single Unit)
 # -----------------------------------
-class aptx_neuron(nn.Module):
+class APTx_Neuron(nn.Module):
     def __init__(self, input_dim, is_alpha_trainable=True):
         super(aptx_neuron, self).__init__()
         if is_alpha_trainable:
@@ -38,10 +38,10 @@ class aptx_neuron(nn.Module):
 # -----------------------------------
 # APTx Layer (Multiple Neurons)
 # -----------------------------------
-class aptx_layer(nn.Module):
+class APTxLayer(nn.Module):
     def __init__(self, input_dim, output_dim, is_alpha_trainable=True):
         super(aptx_layer, self).__init__()
-        self.neurons = nn.ModuleList([aptx_neuron(input_dim, is_alpha_trainable) for _ in range(output_dim)])
+        self.neurons = nn.ModuleList([APTx_Neuron(input_dim, is_alpha_trainable) for _ in range(output_dim)])
 
     def forward(self, x):  # x: [batch_size, input_dim]
         outputs = [neuron(x) for neuron in self.neurons]  # list of [batch_size, 1]
