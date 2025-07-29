@@ -10,12 +10,16 @@ import pandas as pd
 import os
 
 parser = argparse.ArgumentParser(prog='MNIST digit classification using a fully-connected feedforward neural network based on APTx Neuron architecture.')
+parser.add_argument("--mode", "-m", default="train")
 parser.add_argument("--total_epoch", "-tep", default=20)
-parser.add_argument("--device", "-d", default="cpu") # We used cpu device for experimentation on the MNIST dataset.
+parser.add_argument("--load_model_weights_path", "-pth", default="./weights/aptx_neural_network_11.pt") # 96.69 % accuracy on test set.
+parser.add_argument("--device", "-d", default="cpu") # we used cpu for experimentation on MNIST dataset
 
 args = parser.parse_args()
+MODE = args.mode
 TOTAL_EPOCH = int(args.total_epoch)
 DEVICE = args.device
+INFERENCE_MODEL_WEIGHTS = args.load_model_weights_path
 LR= 4e-3
 CSV_STORE_PATH = "./result/output.csv"
 
@@ -129,7 +133,7 @@ def count_parameters(model):
 # -----------------------------------
 # Main Training Script
 # -----------------------------------
-def main(device):
+def train(device):
     # MNIST Data Loaders
     train_transform = transforms.Compose([
         transforms.ToTensor(),
@@ -169,7 +173,36 @@ def main(device):
     print("Loss and Accuracy values are saved in: ", CSV_STORE_PATH)
     df.to_csv(CSV_STORE_PATH, index=False)
         
+def infer(model_weight_path, device):
+    # MNIST Data Loaders
+    test_transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize((0.1307,), (0.3081,))
+    ])
+    criterion = nn.CrossEntropyLoss()
+    test_loader = DataLoader(datasets.MNIST(root='.', train=False, transform=test_transform),
+                             batch_size=1000, shuffle=False)
+
+    # Model, Optimizer, Loss
+    model = APTxNet().to(device)
+    model.load_state_dict(torch.load(model_weight_path, map_location=device, weights_only=True))
+    count_parameters(model)  # <<------ Print total parameters here
+    write_dict = {'epoch':['inference'], 'test_loss':[], 'test_accuracy':[]}
+    # Training Loop
+
+    test_loss, test_accuracy = test(model, device, test_loader, criterion)
+    write_dict['test_loss'].append(test_loss)
+    write_dict['test_accuracy'].append(test_accuracy)
+    df = pd.DataFrame(write_dict)
+    # Write the DataFrame to a CSV file
+    print("Inference: Loss and Accuracy values are saved in: ", CSV_STORE_PATH)
+    df.to_csv(CSV_STORE_PATH, index=False)
+    print("test accuracy: ", test_accuracy)
+
 if __name__ == "__main__":
     print("Removing previously stored weights: ./weights/*pt")
-    os.system("rm ./weights/*pt")
-    main(DEVICE)
+    if MODE.lower() == "train":
+        os.system("rm ./weights/*pt")
+        train(DEVICE)
+    elif MODE.lower() in ["inference", "infer", "test"]:
+        infer(INFERENCE_MODEL_WEIGHTS, DEVICE)
