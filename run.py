@@ -11,8 +11,11 @@ import os
 
 parser = argparse.ArgumentParser(prog='MNIST digit classification using a fully-connected feedforward neural network based on APTx Neuron architecture.')
 parser.add_argument("--total_epoch", "-tep", default=20)
+parser.add_argument("--device", "-d", default="cpu") # We used cpu device for experimentation on the MNIST dataset.
+
 args = parser.parse_args()
 TOTAL_EPOCH = int(args.total_epoch)
+DEVICE = args.device
 LR= 4e-3
 CSV_STORE_PATH = "./result/output.csv"
 
@@ -21,7 +24,7 @@ CSV_STORE_PATH = "./result/output.csv"
 # -----------------------------------
 class APTx_Neuron(nn.Module):
     def __init__(self, input_dim, is_alpha_trainable=True):
-        super(aptx_neuron, self).__init__()
+        super(APTx_Neuron, self).__init__()
         if is_alpha_trainable:
             self.alpha = nn.Parameter(torch.randn(input_dim)) 
         else:
@@ -40,7 +43,7 @@ class APTx_Neuron(nn.Module):
 # -----------------------------------
 class APTxLayer(nn.Module):
     def __init__(self, input_dim, output_dim, is_alpha_trainable=True):
-        super(aptx_layer, self).__init__()
+        super(APTxLayer, self).__init__()
         self.neurons = nn.ModuleList([APTx_Neuron(input_dim, is_alpha_trainable) for _ in range(output_dim)])
 
     def forward(self, x):  # x: [batch_size, input_dim]
@@ -126,9 +129,7 @@ def count_parameters(model):
 # -----------------------------------
 # Main Training Script
 # -----------------------------------
-def main():
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
+def main(device):
     # MNIST Data Loaders
     train_transform = transforms.Compose([
         transforms.ToTensor(),
@@ -171,4 +172,4 @@ def main():
 if __name__ == "__main__":
     print("Removing previously stored weights: ./weights/*pt")
     os.system("rm ./weights/*pt")
-    main()
+    main(DEVICE)
