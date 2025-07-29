@@ -11,8 +11,8 @@ import os
 
 parser = argparse.ArgumentParser(prog='MNIST digit classification using a fully-connected feedforward neural network based on APTx Neuron architecture.')
 parser.add_argument("--mode", "-m", default="train")
-parser.add_argument("--total_epoch", "-tep", default=1)
-parser.add_argument("--load_model_weights_path", "-pth", default="./weights/aptx_neural_network_11.pt") # 96.69 % accuracy on test set.
+parser.add_argument("--total_epoch", "-tep", default=20)
+parser.add_argument("--load_model_weights_path", "-pth", default="./weights/aptx_neural_network_11.pt") # 11th Epoch showed 96.69 % accuracy on test set.
 parser.add_argument("--device", "-d", default="cpu") # we used cpu for experimentation on MNIST dataset
 
 args = parser.parse_args()
