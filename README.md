@@ -99,7 +99,7 @@ aptx_neuron_layer = aptx_neuron.aptx_layer(input_dim=input_dim, output_dim=outpu
 ## Experimentation on MNIST dataset
 Run the below code to automatically run the APTx Neuron based fully-connected neural network on MNIST dataset and save the `loss` and `accuracy` values in `./result/` directory.
 
-**Note**: The Experimentation was performed using `Python 3.12.11`.
+**Note**: The Experimentation was performed using `Python 3.12.11` on the `cpu` device.
 ```python
 python3 run.py --total_epoch 20
 ```
