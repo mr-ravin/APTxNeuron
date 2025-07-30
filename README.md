@@ -139,7 +139,6 @@ python3 run.py --mode infer --device cpu
 ![image](https://github.com/mr-ravin/APTxNeuron//blob/main/mnist_accuracy.png?raw=true)
 
 3. ##### Training & Evaluation Metrics (APTx Neuron on MNIST)
-```
 
 | **Epoch** | **Train Loss** | **Test Loss** | **Train Accuracy (%)**  | **Test Accuracy (%)**  |
 |-----------|----------------|---------------|-------------------------|------------------------|
@@ -163,7 +162,7 @@ python3 run.py --mode infer --device cpu
 | 18        | 0.00           | 6.02          | 99.79                   | 96.65                  |
 | 19        | 0.00           | 5.95          | 99.78                   | 96.68                  |
 | 20        | 0.00           | 6.13          | **99.81**               | 96.56                  |
-```
+
 > ✅ **Best Test Accuracy:** `96.69%` at **Epoch 11**  
 > 📌 Indicates potential for **further improvement** with better optimization or deeper architecture.
 
