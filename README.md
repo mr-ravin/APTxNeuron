@@ -132,16 +132,16 @@ python3 run.py --mode infer --device cpu
 ----
 
 ### Visualise Model Performance
-1. ##### Visual analysis of train and test loss values.
+1. ##### Visual analysis of train and test loss values
 ![image](https://github.com/mr-ravin/APTxNeuron//blob/main/mnist_loss.png?raw=true)
 
-2. ##### Visual analysis of train and test accuracy values.
+2. ##### Visual analysis of train and test accuracy values
 ![image](https://github.com/mr-ravin/APTxNeuron//blob/main/mnist_accuracy.png?raw=true)
 
-##### 📈 Training & Evaluation Metrics (APTx Neuron on MNIST)
+3. ##### Training & Evaluation Metrics (APTx Neuron on MNIST)
 ```
 
-| **Epoch** | **Train Loss** | **Test Loss** | **Train Accuracy (%)** | **Test Accuracy (%)**   |
+| **Epoch** | **Train Loss** | **Test Loss** | **Train Accuracy (%)**  | **Test Accuracy (%)**  |
 |-----------|----------------|---------------|-------------------------|------------------------|
 | 1         | 85.58          | 36.73         | 84.16                   | 89.12                  |
 | 2         | 33.27          | 17.82         | 90.16                   | 90.76                  |
