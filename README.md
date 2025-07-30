@@ -99,17 +99,73 @@ aptx_neuron_layer = aptx_neuron.aptx_layer(input_dim=input_dim, output_dim=outpu
 ## Experimentation on MNIST dataset
 Run the below code to automatically run the APTx Neuron based fully-connected neural network on MNIST dataset and save the `loss` and `accuracy` values in `./result/` directory.
 
-**Note**: The Experimentation was performed using `Python 3.12.11` on the `cpu` device.
+<b>1. Best Result</b>
+- ✅ **Test Accuracy**: 96.69%
+
+- 📁 **Model Weights File**: `./weights/aptx_neural_network_11.pt`
+
+- 💻 **Environment**: Python `3.12.11`, Pytorch `>=1.8.0`, and Device: `cpu`
+
+🚀 Note: This result was obtained using default hyperparameters on CPU.
+🔧 Further optimization (e.g., learning rate scheduling, weight initialization, architecture tuning, or training on GPU etc.) has the potential to improve accuracy even further.
+
+
+<b>2. Model Training</b>
+
+To train the model from scratch (using Python 3.12.11 on cpu):
 ```python
 python3 run.py --total_epoch 20
 ```
+This command will:
+- Train the model on MNIST
+- Save training and validation loss/accuracy in the ./result/ directory
+- Use the default device: cpu
 
-#### Visualise
+<b>3. Model Inference</b>
+
+To perform inference on the test set using the trained model (reproducibility mode):
+```python
+python3 run.py --mode infer --device cpu
+```
+⚠️ **Important**: The codebase was refactored after training. Use this command to reproduce the test accuracy correctly under the same configuration.
+
+----
+
+### Visualise Model Performance
 1. ##### Visual analysis of train and test loss values.
 ![image](https://github.com/mr-ravin/APTxNeuron//blob/main/mnist_loss.png?raw=true)
 
 2. ##### Visual analysis of train and test accuracy values.
 ![image](https://github.com/mr-ravin/APTxNeuron//blob/main/mnist_accuracy.png?raw=true)
+
+##### 📈 Training & Evaluation Metrics (APTx Neuron on MNIST)
+```
+
+| **Epoch** | **Train Loss** | **Test Loss** | **Train Accuracy (%)** | **Test Accuracy (%)**   |
+|-----------|----------------|---------------|-------------------------|------------------------|
+| 1         | 85.58          | 36.73         | 84.16                   | 89.12                  |
+| 2         | 33.27          | 17.82         | 90.16                   | 90.76                  |
+| 3         | 19.97          | 28.16         | 91.80                   | 90.82                  |
+| 4         | 9.98           | 27.00         | 92.55                   | 90.66                  |
+| 5         | 15.28          | 24.45         | 93.59                   | 93.03                  |
+| 6         | 13.88          | 9.13          | 97.11                   | 96.33                  |
+| 7         | 9.35           | 8.84          | 97.47                   | 95.53                  |
+| 8         | 0.00           | 7.73          | 97.38                   | 95.51                  |
+| 9         | 1.10           | 9.19          | 97.51                   | 94.47                  |
+| 10        | 6.41           | 8.69          | 97.56                   | 95.59                  |
+| 11        | 0.00           | 6.81          | 98.75                   | **96.69**              |
+| 12        | 0.00           | 6.57          | 99.11                   | 96.53                  |
+| 13        | 0.00           | 6.67          | 99.19                   | 96.57                  |
+| 14        | 0.00           | 7.29          | 99.21                   | 96.40                  |
+| 15        | 0.00           | 6.90          | 99.23                   | 96.46                  |
+| 16        | 0.00           | 6.25          | 99.60                   | 96.63                  |
+| 17        | 0.00           | 6.21          | 99.77                   | 96.58                  |
+| 18        | 0.00           | 6.02          | 99.79                   | 96.65                  |
+| 19        | 0.00           | 5.95          | 99.78                   | 96.68                  |
+| 20        | 0.00           | 6.13          | **99.81**               | 96.56                  |
+```
+> ✅ **Best Test Accuracy:** `96.69%` at **Epoch 11**  
+> 📌 Indicates potential for **further improvement** with better optimization or deeper architecture.
 
 ----
 #### Conclusion
