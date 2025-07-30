@@ -97,20 +97,19 @@ aptx_neuron_layer = aptx_neuron.aptx_layer(input_dim=input_dim, output_dim=outpu
 
 ----
 ## Experimentation on MNIST dataset
-Run the below code to automatically run the APTx Neuron based fully-connected neural network on MNIST dataset and save the `loss` and `accuracy` values in `./result/` directory.
+Run the below command to train an APTx Neuron-based fully-connected neural network on the MNIST dataset. The model will automatically save training `loss` and `accuracy` values in the `./result/` directory.
 
-<b>1. Best Result</b>
-- ✅ **Test Accuracy**: 96.69%
+**Note:** For this MNIST experimentation, we have hardcoded `is_alpha_trainable=True` inside `run.py`.
+If you wish to explore the **full flexibility and modularity** of APTx Neuron (including toggling α trainability), we recommend using the official PyPI package:
+```bash
+pip install aptx-neuron
+```
+Or, install directly from GitHub:
+```bash
+pip install git+https://github.com/mr-ravin/aptx_neuron.git
+```
 
-- 📁 **Model Weights File**: `./weights/aptx_neural_network_11.pt`
-
-- 💻 **Environment**: Python `3.12.11`, Pytorch `>=1.8.0`, and Device: `cpu`
-
-🚀 Note: This result was obtained using default hyperparameters on CPU.
-🔧 Further optimization (e.g., learning rate scheduling, weight initialization, architecture tuning, or training on GPU etc.) has the potential to improve accuracy even further.
-
-
-<b>2. Model Training</b>
+<b>1. Model Training</b>
 
 To train the model from scratch (using Python 3.12.11 on cpu):
 ```python
@@ -121,24 +120,42 @@ This command will:
 - Save training and validation loss/accuracy in the ./result/ directory
 - Use the default device: cpu
 
-<b>3. Model Inference</b>
+<b>2. Model Inference</b>
 
 To perform inference on the test set using the trained model (reproducibility mode):
 ```python
 python3 run.py --mode infer --device cpu
 ```
-⚠️ **Important**: The codebase was refactored after training. Use this command to reproduce the test accuracy correctly under the same configuration.
-
 ----
 
-### Visualise Model Performance
-1. ##### Visual analysis of train and test loss values
+### Reproducibility on MNIST dataset
+
+#### 1. Inference on Pre-trained model
+   
+- ✅ **Test Accuracy**: 96.69%
+
+- 📁 **Model Weights File**: `./weights/aptx_neural_network_11.pt`
+
+- 💻 **Environment**: Python `3.12.11`, Pytorch `>=1.8.0`, and Device: `cpu`
+-  **Command**:
+``` python3 run.py --mode infer --device cpu --load_model_weights_path ./weights/aptx_neural_network_11.pt ```
+   
+⚠️ **Important**: The codebase was refactored after training. Use this command to reproduce the test accuracy correctly under the same configuration.
+🚀 Note: This result was obtained using default hyperparameters on CPU.
+🔧 Further optimization (e.g., learning rate scheduling, weight initialization, architecture tuning, or training on GPU etc.) has the potential to improve accuracy even further.
+
+
+#### 2. Visualise Model Performance
+
+##### 2.1 Visual analysis of train and test loss values
+
 ![image](https://github.com/mr-ravin/APTxNeuron//blob/main/mnist_loss.png?raw=true)
 
-2. ##### Visual analysis of train and test accuracy values
+##### 2.2 Visual analysis of train and test accuracy values
+
 ![image](https://github.com/mr-ravin/APTxNeuron//blob/main/mnist_accuracy.png?raw=true)
 
-3. ##### Training & Evaluation Metrics (APTx Neuron on MNIST)
+##### 2.3 Training & Evaluation Metrics (APTx Neuron on MNIST)
 
 | **Epoch** | **Train Loss** | **Test Loss** | **Train Accuracy (%)**  | **Test Accuracy (%)**  |
 |-----------|----------------|---------------|-------------------------|------------------------|
