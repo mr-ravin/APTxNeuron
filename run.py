@@ -129,7 +129,6 @@ def test(model, device, test_loader, criterion):
 def count_parameters(model):
     total = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(f"Total Trainable Parameters: {total:,}")
-    return total
 
 # -----------------------------------
 # Model Training Script
