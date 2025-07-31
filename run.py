@@ -21,7 +21,7 @@ MODE = args.mode
 TOTAL_EPOCH = args.total_epoch
 DEVICE = args.device
 INFERENCE_MODEL_WEIGHTS = args.load_model_weights_path
-LR= args.lr
+LR = args.lr
 CSV_STORE_PATH = "./result/"
 
 # -----------------------------------
