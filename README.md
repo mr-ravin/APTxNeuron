@@ -8,6 +8,7 @@ This repository offers a Python code for the PyTorch implementation of the APTx 
 **Sources**:
 - [Arxiv.org](https://arxiv.org/abs/2507.14270)
 - [Research Gate](https://www.researchgate.net/publication/393889376_APTx_Neuron_A_Unified_Trainable_Neuron_Architecture_Integrating_Activation_and_Computation)
+- [SSRN](http://dx.doi.org/10.2139/ssrn.5364841)
   
 #### Github Repositories: 
 - **APTx Neuron** (Pytorch + PyPI Package): [APTx Neuron](https://github.com/mr-ravin/aptx_neuron)
