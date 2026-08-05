@@ -277,7 +277,7 @@ python3 run.py --total_epoch 20
 ```
 This command will:
 - Train the model on MNIST
-- Save training and validation loss/accuracy in the ./result/ directory
+- Save training and validation loss and accuracy in the ./result/ directory
 - Use the default device: cpu
 
 <b>2. Model Inference</b>
@@ -307,38 +307,34 @@ python3 run.py --mode infer --device cpu
 
 #### 2. Visualise Model Performance
 
-##### 2.1 Visual analysis of train and test loss values
-
-![image](https://github.com/mr-ravin/APTxNeuron//blob/main/mnist_loss.png?raw=true)
-
-##### 2.2 Visual analysis of train and test accuracy values
+##### 2.1 Visual analysis of train and test accuracy values
 
 ![image](https://github.com/mr-ravin/APTxNeuron//blob/main/mnist_accuracy.png?raw=true)
 
-##### 2.3 Training & Evaluation Metrics (APTx Neuron on MNIST)
+##### 2.2 Training & Evaluation Metrics (APTx Neuron on MNIST)
 
-| **Epoch** | **Train Loss** | **Test Loss** | **Train Accuracy (%)**  | **Test Accuracy (%)**  |
-|-----------|----------------|---------------|-------------------------|------------------------|
-| 1         | 85.58          | 36.73         | 84.16                   | 89.12                  |
-| 2         | 33.27          | 17.82         | 90.16                   | 90.76                  |
-| 3         | 19.97          | 28.16         | 91.80                   | 90.82                  |
-| 4         | 9.98           | 27.00         | 92.55                   | 90.66                  |
-| 5         | 15.28          | 24.45         | 93.59                   | 93.03                  |
-| 6         | 13.88          | 9.13          | 97.11                   | 96.33                  |
-| 7         | 9.35           | 8.84          | 97.47                   | 95.53                  |
-| 8         | 0.00           | 7.73          | 97.38                   | 95.51                  |
-| 9         | 1.10           | 9.19          | 97.51                   | 94.47                  |
-| 10        | 6.41           | 8.69          | 97.56                   | 95.59                  |
-| 11        | 0.00           | 6.81          | 98.75                   | **96.69**              |
-| 12        | 0.00           | 6.57          | 99.11                   | 96.53                  |
-| 13        | 0.00           | 6.67          | 99.19                   | 96.57                  |
-| 14        | 0.00           | 7.29          | 99.21                   | 96.40                  |
-| 15        | 0.00           | 6.90          | 99.23                   | 96.46                  |
-| 16        | 0.00           | 6.25          | 99.60                   | 96.63                  |
-| 17        | 0.00           | 6.21          | 99.77                   | 96.58                  |
-| 18        | 0.00           | 6.02          | 99.79                   | 96.65                  |
-| 19        | 0.00           | 5.95          | 99.78                   | 96.68                  |
-| 20        | 0.00           | 6.13          | **99.81**               | 96.56                  |
+| **Epoch** | **Train Accuracy (%)**  | **Test Accuracy (%)**  |
+|-----------|-------------------------|------------------------|
+| 1         | 84.16                   | 89.12                  |
+| 2         | 90.16                   | 90.76                  |
+| 3         | 91.80                   | 90.82                  |
+| 4         | 92.55                   | 90.66                  |
+| 5         | 93.59                   | 93.03                  |
+| 6         | 97.11                   | 96.33                  |
+| 7         | 97.47                   | 95.53                  |
+| 8         | 97.38                   | 95.51                  |
+| 9         | 97.51                   | 94.47                  |
+| 10        | 97.56                   | 95.59                  |
+| 11        | 98.75                   | **96.69**              |
+| 12        | 99.11                   | 96.53                  |
+| 13        | 99.19                   | 96.57                  |
+| 14        | 99.21                   | 96.40                  |
+| 15        | 99.23                   | 96.46                  |
+| 16        | 99.60                   | 96.63                  |
+| 17        | 99.77                   | 96.58                  |
+| 18        | 99.79                   | 96.65                  |
+| 19        | 99.78                   | 96.68                  |
+| 20        | **99.81**               | 96.56                  |
 
 > ✅ **Best Test Accuracy:** `96.69%` at **Epoch 11**  
 > 📌 Indicates potential for **further improvement** with better optimization or deeper architecture.
