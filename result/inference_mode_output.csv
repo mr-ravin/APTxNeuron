@@ -1,2 +1,2 @@
-epoch,test_loss,test_accuracy
-inference,6.8133,96.69
+epoch,test_accuracy
+inference,96.69
