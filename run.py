@@ -184,7 +184,7 @@ def train_and_evaluate(device):
     optimizer = torch.optim.Adam(model.parameters(), lr=LR)
     lr_scheduler = StepLR(optimizer, step_size=5, gamma=0.25)
     criterion = nn.CrossEntropyLoss()
-    write_dict = {'epoch':[],'train_loss':[],'test_loss':[], 'train_accuracy':[], 'test_accuracy':[]}
+    write_dict = {'epoch':[], 'train_accuracy':[], 'test_accuracy':[]}
     # Training Loop
     for epoch in range(1, TOTAL_EPOCH + 1):
         print("Epoch: ", epoch)
@@ -192,14 +192,12 @@ def train_and_evaluate(device):
         train_loss, train_accuracy = train(model, device, train_loader, optimizer, criterion, epoch)
         lr_scheduler.step()
         test_loss, test_accuracy = test(model, device, test_loader, criterion)
-        write_dict['train_loss'].append(train_loss)
-        write_dict['test_loss'].append(test_loss)
         write_dict['train_accuracy'].append(train_accuracy)
         write_dict['test_accuracy'].append(test_accuracy)
     df = pd.DataFrame(write_dict)
     # Write the DataFrame to a CSV file
     csv_output_path = CSV_STORE_PATH+"train_mode_output.csv"
-    print("Loss and Accuracy values are saved in: ", csv_output_path)
+    print("Accuracy values are saved in: ", csv_output_path)
     df.to_csv(csv_output_path, index=False)
 
 
@@ -220,16 +218,15 @@ def inference(model_weight_path, device):
     model = APTxNet().to(device)
     model.load_state_dict(torch.load(model_weight_path, map_location=device, weights_only=True))
     count_parameters(model)  # <<------ Print total parameters here
-    write_dict = {'epoch':['inference'], 'test_loss':[], 'test_accuracy':[]}
+    write_dict = {'epoch':['inference'], 'test_accuracy':[]}
     # Training Loop
 
     test_loss, test_accuracy = test(model, device, test_loader, criterion)
-    write_dict['test_loss'].append(test_loss)
     write_dict['test_accuracy'].append(test_accuracy)
     df = pd.DataFrame(write_dict)
     # Write the DataFrame to a CSV file
     csv_output_path = CSV_STORE_PATH+"inference_mode_output.csv"
-    print("Loss and Accuracy values are saved in: ", csv_output_path)
+    print("Accuracy values are saved in: ", csv_output_path)
     df.to_csv(csv_output_path, index=False)
     print("Test accuracy: ", test_accuracy)
 
