@@ -79,52 +79,80 @@ class APTxNet(nn.Module):
 # -----------------------------------
 def train(model, device, train_loader, optimizer, criterion, epoch):
     model.train()
+
     correct = 0
-    total_loss = 0
-    loss = 0
+    total_loss = 0.0
+    total_samples = 0
+
     with tqdm(train_loader, unit=" Train batch") as tepoch:
-        tepoch.set_description(f"Train Epoch:")
+        tepoch.set_description("Train Epoch:")
+
         for data, target in tepoch:
             data, target = data.to(device), target.to(device)
+
             optimizer.zero_grad()
-            output = model(data)  # raw logits
+            output = model(data)
             loss = criterion(output, target)
+
             loss.backward()
             optimizer.step()
-            total_loss += loss.item()
-            # Apply softmax here for probabilities
-            probs = F.softmax(output.detach().cpu(), dim=1)         
-            pred = probs.argmax(dim=1)
+
+            batch_size = target.size(0)
+
+            # CrossEntropyLoss returns batch mean, so multiply by batch size.
+            total_loss += loss.item() * batch_size
+            total_samples += batch_size
+
+            pred = output.argmax(dim=1)
             correct += pred.eq(target).sum().item()
-    print(f"Epoch {epoch}: Train Loss = {total_loss / len(train_loader):.4f}")        
-    # Save recent model weights here
-    torch.save(model.state_dict(), "./weights/aptx_neural_network_"+str(epoch)+".pt")
-    print(">>> Saved model weights in file: ./weights/aptx_neural_network_"+str(epoch)+".pt")
-    accuracy = 100. * correct / len(train_loader.dataset)
+
+    average_loss = total_loss / total_samples
+    accuracy = 100.0 * correct / total_samples
+
+    print(f"Epoch {epoch}: Train Loss = {average_loss:.4f}")
     print(f"Train Accuracy: {accuracy:.2f}%")
-    return round(loss.item(),4), round(accuracy,4)
+
+    weight_path = f"./weights/aptx_neural_network_{epoch}.pt"
+    torch.save(model.state_dict(), weight_path)
+    print(f">>> Saved model weights in file: {weight_path}")
+
+    return round(average_loss, 4), round(accuracy, 4)
 
 # -----------------------------------
 # Testing Function (with Softmax)
 # -----------------------------------
 def test(model, device, test_loader, criterion):
     model.eval()
+
     correct = 0
-    loss = 0
+    total_loss = 0.0
+    total_samples = 0
+
     with torch.no_grad():
         with tqdm(test_loader, unit=" Test batch") as tepoch:
-            tepoch.set_description(f"Test Epoch:")
+            tepoch.set_description("Test Epoch:")
+
             for data, target in tepoch:
                 data, target = data.to(device), target.to(device)
+
                 output = model(data)
                 loss = criterion(output, target)
-                # Apply softmax here for probabilities
-                probs = F.softmax(output, dim=1)         
-                pred = probs.argmax(dim=1)
+
+                batch_size = target.size(0)
+
+                total_loss += loss.item() * batch_size
+                total_samples += batch_size
+
+                pred = output.argmax(dim=1)
                 correct += pred.eq(target).sum().item()
-    accuracy = 100. * correct / len(test_loader.dataset)
+
+    average_loss = total_loss / total_samples
+    accuracy = 100.0 * correct / total_samples
+
+    print(f"Test Loss: {average_loss:.4f}")
     print(f"Test Accuracy: {accuracy:.2f}%")
-    return round(loss.item(),4), round(accuracy,4)
+
+    return round(average_loss, 4), round(accuracy, 4)
 
 def count_parameters(model):
     total = sum(p.numel() for p in model.parameters() if p.requires_grad)
