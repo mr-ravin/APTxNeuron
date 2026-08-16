@@ -15,11 +15,13 @@ This repository offers a Python code for the PyTorch implementation of the APTx 
 - **APTx Activation Function** (Pytorch + PyPI Package): [APTx Activation Function](https://github.com/mr-ravin/aptx_activation)
 - **Experimentation Results with MNIST** (APTx Neuron): [MNIST Experimentation Code](https://github.com/mr-ravin/APTxNeuron)
 
-#### Cite Paper as:
+#### Cite Published Paper as:
 ```
-Kumar, Ravin. "APTx Neuron: A Unified Trainable Neuron Architecture Integrating Activation and Computation." arXiv preprint arXiv:2507.14270 (2025).
+Kumar, R. (2026). APTx Neuron: A Unified Trainable Neuron Architecture Integrating Activation and Computation. In: Senjyu, T., Mahmud, M., Joshi, A. (eds) Smart Trends in Computing and Communications. SmartCom 2026. Lecture Notes in Networks and Systems, vol 1993. Springer, Cham. https://doi.org/10.1007/978-3-032-27157-0_13
 ```
+
 Or,
+**Cite ArXiv Preprint as:**
 ```
 @article{kumar2025aptx,
   title={APTx Neuron: A Unified Trainable Neuron Architecture Integrating Activation and Computation},
@@ -253,6 +255,39 @@ else:
 print("\nGradient beta shape:", model.beta.grad.shape)
 print("\nGradient gamma shape:", model.gamma.grad.shape)
 print("\nGradient delta shape:", model.delta.grad.shape)
+```
+
+- #### Example: APTx Activation Function
+  
+1. APTx Activation Function with parameters values (On Default Device; likely CPU):
+```python
+import torch
+from aptx_neuron import aptx_activation_function
+
+# Example Usage
+aptx_activation_fn = aptx_activation_function(alpha=1.0, beta=1.0, gamma=0.5) # default values in APTx Activation Function (trainable = False)
+tensor = torch.randn(5)
+output = aptx_activation_fn(tensor)
+print(output)
+```
+
+2. APTx Activation Function with parameters values (On GPU Device):
+```python
+import torch
+from aptx_neuron import aptx_activation_function
+
+# Example Usage
+aptx_activation_fn = aptx_activation_function(alpha=1.0, beta=1.0, gamma=0.5).to("cuda") # default values in APTx Activation Function (trainable = False)
+tensor = torch.randn(5).to("cuda")
+output = aptx_activation_fn(tensor)
+print(output)
+```
+
+3. APTx Activation Function with trainable parameters
+APTx Activation Function allows for trainable parameters to adapt dynamically during training when `trainable` is set to `True`:
+```python
+from aptx_neuron import aptx_activation_function
+aptx_activation_fn = aptx_activation_function(trainable=True)  # Learnable α, β, and γ
 ```
 
 ----
